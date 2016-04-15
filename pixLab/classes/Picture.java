@@ -148,9 +148,53 @@ public class Picture extends SimplePicture
         rightPixel = pixels[row][width - 1 - col];
         rightPixel.setColor(leftPixel.getColor());
       }
-    } 
+    }
   }
-  
+
+    public void mirrorVerticalRightToLeft() {
+        Pixel[][] pixels = this.getPixels2D();
+        Pixel leftPixel = null;
+        Pixel rightPixel = null;
+        int width = pixels[0].length;
+        for (int row = 0; row < pixels.length; row++)
+            {
+                for (int col = width / 2; col < width; col++)
+                    {
+                        rightPixel = pixels[row][col];
+                        leftPixel = pixels[row][width - 1 - col];
+                        leftPixel.setColor(rightPixel.getColor());
+                    }
+            }
+    }
+
+    public void mirrorHorizontal() {
+        Pixel[][] pixels = this.getPixels2D();
+        Pixel lowerPixel = null;
+        Pixel upperPixel = null;
+        int height = pixels.length;
+        for (int row = 0; row < height / 2; row++) {
+            for (int col = 0; col < pixels[row].length; col++) {
+                upperPixel = pixels[row][col];
+                lowerPixel = pixels[height - 1 - row][col];
+                lowerPixel.setColor(upperPixel.getColor());
+            }
+        }
+    }
+
+    public void mirrorHorizontalBotToTop() {
+        Pixel[][] pixels = this.getPixels2D();
+        Pixel lowerPixel = null;
+        Pixel upperPixel = null;
+        int height = pixels.length;
+        for (int row = 0; row < height / 2; row++) {
+            for (int col = 0; col < pixels[row].length; col++) {
+                upperPixel = pixels[row][col];
+                lowerPixel = pixels[height - 1 - row][col];
+                upperPixel.setColor(lowerPixel.getColor());
+            }
+        }
+    }
+
   /** Mirror just part of a picture of a temple */
   public void mirrorTemple()
   {
