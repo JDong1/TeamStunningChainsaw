@@ -383,8 +383,59 @@ public class Picture extends SimplePicture
       }
     }
   }
-  
-  
+
+    public void edgeDetection2(int edgeDist)
+    {
+        Pixel primaryPixel = null;
+        Pixel rightPixel = null;
+        Pixel[][] pixels = this.getPixels2D();
+        Color rightColor = null;
+        Pixel belowPixel = null;
+        Color belowColor;
+        for (int row = 0; row < pixels.length - 1; row++) {
+            for (int col = 0; col < pixels[0].length-1; col++) {
+                primaryPixel = pixels[row][col];
+                rightPixel = pixels[row][col+1];
+                rightColor = rightPixel.getColor();
+                belowPixel = pixels[row + 1][col];
+                belowColor = belowPixel.getColor();
+                if (primaryPixel.colorDistance(rightColor) > edgeDist
+                    || primaryPixel.colorDistance(belowColor) > edgeDist){
+                    primaryPixel.setColor(Color.BLACK);
+                } else {
+                    primaryPixel.setColor(Color.WHITE);
+                }
+            }
+        }
+    }
+
+    private int brightnessDist(Pixel c, Pixel d) {
+        int cb = (c.getBlue() + c.getRed() + c.getGreen()) / 3;
+        int cd = (d.getBlue() + d.getRed() + d.getGreen()) / 3;
+        return Math.abs(cd - cb);
+    }
+    public void edgeDetectionBrightness(int edgeDist)
+    {
+        Pixel primaryPixel = null;
+        Pixel rightPixel = null;
+        Pixel[][] pixels = this.getPixels2D();
+        Pixel belowPixel = null;
+        for (int row = 0; row < pixels.length - 1; row++) {
+            for (int col = 0; col < pixels[0].length-1; col++) {
+                primaryPixel = pixels[row][col];
+                rightPixel = pixels[row][col+1];
+                belowPixel = pixels[row + 1][col];
+                if (brightnessDist(primaryPixel, rightPixel) > edgeDist
+                    || brightnessDist(primaryPixel, belowPixel) > edgeDist){
+                    primaryPixel.setColor(Color.BLACK);
+                } else {
+                    primaryPixel.setColor(Color.WHITE);
+                }
+            }
+        }
+    }
+
+
   /* Main method for testing - each class in Java can have a main 
    * method 
    */
