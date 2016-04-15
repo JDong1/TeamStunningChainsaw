@@ -108,6 +108,20 @@ public class PictureTester
     swan.explore();
   }
   
+    public static void testCopy()
+  {
+    Picture canvas = new Picture("640x480.jpg");
+    canvas.createCollage();
+    canvas.explore();
+  }
+  
+    public static void testmyCollage()
+  {
+    Picture canvas = new Picture("640x480.jpg");
+    canvas.myCollage();
+    canvas.explore();
+  }
+  
   /** Main method for testing.  Every class can have a main
     * method in Java */
   public static void main(String[] args)
@@ -124,12 +138,12 @@ public class PictureTester
     //testFixUnderwater();
     //testMirrorVertical();
     testMirrorHorizontal();
-    //testMirrorTemple();
-    //testMirrorArms();
-    //testMirrorGull();
+    testMirrorTemple();
+    testMirrorArms();
+    testMirrorGull();
     //testMirrorDiagonal();
-    //testCollage();
-    //testCopy();
+    testCollage();
+    testCopy();
     //testEdgeDetection();
     //testEdgeDetection2();
     //testChromakey();
